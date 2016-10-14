@@ -3,6 +3,7 @@ defmodule BasicSite.Router do
     use Plug.Debugger
     
     plug Plug.Logger
+    plug Plug.Static, at: "/", from: :basic_site
     plug :match
     plug :dispatch
 
@@ -15,7 +16,7 @@ defmodule BasicSite.Router do
     end
 
      get "/:name" do
-        send_resp(conn, 200, EEx.eval_file())
+        send_resp(conn, 200, EEx.eval_file("templates/name.eex", [name: name]))
     end
 
 end
