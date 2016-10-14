@@ -8,7 +8,7 @@ defmodule BasicSite.Router do
     plug :dispatch
 
     get "/" do
-        send_resp(conn, 200, "Hi from plug")
+        send_resp(conn, 200, EEx.eval_file("templates/index.eex"))
     end
 
     get "/bug" do
@@ -18,5 +18,5 @@ defmodule BasicSite.Router do
      get "/:name" do
         send_resp(conn, 200, EEx.eval_file("templates/name.eex", [name: name]))
     end
-
+    
 end
